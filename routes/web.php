@@ -14,7 +14,4 @@ use App\Http\Controllers\CommentController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-Route::get("/comments",[CommentController::class, "index"]);
+Route::get('/', [CommentController::class, "index"]);

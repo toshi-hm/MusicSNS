@@ -13,7 +13,18 @@ $api->setAccessToken($accessToken);
 
 $results = $api->search('緑黄色社会', 'artist');
 foreach ($results->artists->items as $artist) {
+    dd($artist);
     echo $artist->name, '<br>';
 }
+
+// $album = $api->getAlbum('1wZvv1wdTDAKvWVoqnMcIK?si=GkJrKjZ1T3yJ86o8hy0zpQ');
+// dd($album);
+// echo '<b>' . $album->name . '</b>';
+
+
+// $artist = $api->getArtist('4SJ7qRgJYNXB9Yttzs4aSa');
+// dd($artist);
+// echo '<b>' . $artist->name . '</b>';
+
 ?>
 
