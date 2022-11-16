@@ -9,6 +9,6 @@ class CommentController extends Controller
 {
     public function index(Comment $comment)//インポートしたPostをインスタンス化して$postとして使用。
     {
-        return $comment->get();//$postの中身を戻り値にする。
+        return view("comments/index")->with(["comments" => $comment->getPaginateByLimit()]);
     }
 }
