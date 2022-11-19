@@ -11,16 +11,35 @@ $session->requestCredentialsToken();
 $accessToken = $session->getAccessToken();
 $api->setAccessToken($accessToken);
 
+
+// アーティストIDを取得する
 $results = $api->search('緑黄色社会', 'artist');
 foreach ($results->artists->items as $artist) {
-    dd($artist);
-    echo $artist->name, '<br>';
+    //dd($artist);
+    $artist_id = substr($artist->uri,15);
+    // echo $artist_id . PHP_EOL;
 }
 
-// $album = $api->getAlbum('1wZvv1wdTDAKvWVoqnMcIK?si=GkJrKjZ1T3yJ86o8hy0zpQ');
-// dd($album);
-// echo '<b>' . $album->name . '</b>';
+// アーティストIDを参照してアルバムIDを取得する
+$albums = $api->getArtistAlbums($artist_id);
+foreach ($albums -> items as $album) {
+    // dd($album);
+    $album_id = substr($album->uri,14);
+    echo $album->name . " : " . $album_id . PHP_EOL;
+    
+    $tracks = $api->getAlbumTracks($album_id);
+    foreach ($tracks -> items as $track){
+        echo $track->name . PHP_EOL;
+    }
+    echo PHP_EOL;
+    // echo $album->name . PHP_EOL;
+}
 
+// アルバムIDを参照してトラックを取得する
+$tracks = $api->getAlbumTracks($album_id);
+foreach ($tracks -> items as $track){
+    echo $track->name . PHP_EOL;
+}
 
 // $artist = $api->getArtist('4SJ7qRgJYNXB9Yttzs4aSa');
 // dd($artist);
