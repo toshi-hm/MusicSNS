@@ -12,8 +12,10 @@
             @foreach($comments as $comment)
                 <div class='comment'>
                     <h2 class='music_name'>{{ $comment->music_id }}</h2>
-                    <h3 class="comment_title">{{ $comment->title }}</h3>
-                    <p class="user_name">{{ $comment->user_id }}</p>
+                    <h3 class="comment_title">
+                        <a href="/comments/{{ $comment->id }}">{{ $comment->title }}</a>
+                    </h3>
+                    <p class="user_name">{{ $comment->user_id }}  -  {{ $comment->created_at }}</p>
                     <p class='body'>{{ $comment->body }}</p>
                     <p class="time">{{ $comment->good }}</p>
                 </div>
