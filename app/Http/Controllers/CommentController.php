@@ -15,4 +15,8 @@ class CommentController extends Controller
     {
         return view("comments/show")->with(["comment" => $comment]);
     }
+    public function create()
+    {
+        return view("comments/create");
+    }
 }
