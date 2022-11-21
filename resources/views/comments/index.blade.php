@@ -8,6 +8,7 @@
     </head>
     <body>
         <h1>MusicSNS(仮)</h1>
+        <p>[<a href="/comments/create">コメント作成</a>]</p>
         <div class='comments'>
             @foreach($comments as $comment)
                 <div class='comment'>
