@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Comment;
+use App\Http\Requests\CommentRequest;
 
 class CommentController extends Controller
 {
@@ -18,5 +19,11 @@ class CommentController extends Controller
     public function create()
     {
         return view("comments/create");
+    }
+    public function store(CommentRequest $request, Comment $comment)
+    {
+        $input = $request["comment"];
+        $comment->fill($input)->save();
+        return redirect("/comments/" . $comment->id);
     }
 }
