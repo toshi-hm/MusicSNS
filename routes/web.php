@@ -16,4 +16,5 @@ use App\Http\Controllers\CommentController;
 
 Route::get('/', [CommentController::class, "index"]);
 Route::get("/comments/create", [CommentController::class, "create"]);
+Route::post("/comments", [CommentController::class, "store"]);
 Route::get("/comments/{comment}", [CommentController::class, "show"]);
