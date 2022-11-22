@@ -13,7 +13,7 @@ $api->setAccessToken($accessToken);
 
 
 // アーティストIDを取得する
-$results = $api->search('緑黄色社会', 'artist');
+$results = $api->search('マカロニえんぴつ', 'artist');
 foreach ($results->artists->items as $artist) {
     //dd($artist);
     $artist_id = substr($artist->uri,15);

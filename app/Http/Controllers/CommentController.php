@@ -23,6 +23,8 @@ class CommentController extends Controller
     public function store(CommentRequest $request, Comment $comment)
     {
         $input = $request["comment"];
+        // user_idとgoodを入れてあげる
+        
         $comment->fill($input)->save();
         return redirect("/comments/" . $comment->id);
     }
