@@ -20,3 +20,4 @@ Route::post("/comments", [CommentController::class, "store"]);
 Route::get("/comments/{comment}", [CommentController::class, "show"]);
 Route::get("/comments/{comment}/edit", [CommentController::class, "edit"]);
 Route::put("/comments/{comment}", [CommentController::class, "update"]);
+Route::delete("/comments/{comment}", [CommentController::class, "delete"]);
