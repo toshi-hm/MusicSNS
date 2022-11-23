@@ -18,7 +18,9 @@
                 <h3>本文</h3>
                 <p class='body'>{{ $comment->body }}</p>
                 <p class="good">{{ $comment->good }}</p> 
-                <p class="created_time">{{ $comment->created_at }}</p>
+                <p class="created_time">投稿時間：{{ $comment->created_at }}</p>
+                <p class="updated_time">最終更新時間：{{ $comment->updated_at }}</p>
+                <div class="edit"><a href="/comments/{{ $comment->id }}/edit">編集</a></div>
             </div>
         </div>
         <div class="footer">
