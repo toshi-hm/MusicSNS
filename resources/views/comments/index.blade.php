@@ -19,11 +19,25 @@
                     <p class="user_name">{{ $comment->user_id }}  -  {{ $comment->created_at }}</p>
                     <p class='body'>{{ $comment->body }}</p>
                     <p class="time">{{ $comment->good }}</p>
+                    <form action="/comments/{{ $comment->id }}" id="form_{{ $comment->id }}" method="post">
+                        @csrf
+                        @method("DELETE")
+                        <button type="button" onclick="deleteComment({{ $comment->id }})">削除</button>
+                    </form>
                 </div>
             @endforeach
         </div>
         <div class="paginate">
             {{ $comments->links() }}
         </div>
+        <script>
+            function deleteComment(id) {
+                "use strict"
+                
+                if (confirm("このコメントは完全に削除されますがよろしいですか？")) {
+                    document.getElementById(`form_${id}`).submit();
+                }
+            } 
+        </script>
     </body>
 </html>

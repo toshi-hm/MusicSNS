@@ -39,4 +39,9 @@ class CommentController extends Controller
         
         return redirect("/comments/" . $comment->id);
     }
+    public function delete(Comment $comment)
+    {
+        $comment -> delete();
+        return redirect("/");
+    }
 }
