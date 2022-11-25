@@ -13,7 +13,7 @@
         </h1>
         <div class="content">
             <div class="content__cemment">
-                <h2 class='music_name'>Music: {{ $comment->music_id }}</h2>
+                <h2 class='music_name'>Music: {{ $comment->music_id }} (<a href="/categories/{{ $comment->category->id }}">{{ $comment->category->category_name }}</a>)</h2>
                 <p class="user_name">{{ $comment->user_id }}</p>
                 <h3>本文</h3>
                 <p class='body'>{{ $comment->body }}</p>
