@@ -14,7 +14,7 @@ class Category extends Model
         return  $this -> hasMany(Comment::class);
     }
     
-    public function getCategory(int $limit_count = 5)
+    public function getByCategory(int $limit_count = 5)
     {
         return $this -> comments() -> with("category") ->orderBy("updated_at", "DESC") -> paginate($limit_count);
     }
