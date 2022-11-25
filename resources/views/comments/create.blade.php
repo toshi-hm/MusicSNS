@@ -8,6 +8,14 @@
         <h1>MusicSNS</h1>
         <form action="/comments" method="POST">
             @csrf
+            <div class="category">
+                <h2>Category</h2>
+                <select name="comment[category_id]">
+                    @foreach($categories as $category)
+                        <option value="{{ $category->id }}">{{ $category->category_name }}</option>
+                    @endforeach
+                </select>
+            </div>
             <div class="music_name">
                 <h2>楽曲</h2>
                 <input type="text" name="comment[music_id]" placeholder="楽曲名" value="{{ old('comment.music_id') }}"/>

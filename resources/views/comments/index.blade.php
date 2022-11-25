@@ -12,7 +12,7 @@
         <div class='comments'>
             @foreach($comments as $comment)
                 <div class='comment'>
-                    <h2 class='music_name'>{{ $comment->music_id }}</h2>
+                    <h2 class='music_name'>{{ $comment->music_id }} (<a href="/categories/{{ $comment->category->id }}">{{ $comment->category->category_name }}</a>)</h2>
                     <h3 class="comment_title">
                         <a href="/comments/{{ $comment->id }}">{{ $comment->title }}</a>
                     </h3>

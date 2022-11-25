@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Comment;
 use App\Http\Requests\CommentRequest;
+use App\Models\Category;
 
 class CommentController extends Controller
 {
@@ -16,9 +17,9 @@ class CommentController extends Controller
     {
         return view("comments/show")->with(["comment" => $comment]);
     }
-    public function create()
+    public function create(Category $category)
     {
-        return view("comments/create");
+        return view("comments/create") -> with(["categories" => $category ->get()]);
     }
     public function store(CommentRequest $request, Comment $comment)
     {
