@@ -1,8 +1,8 @@
 <?php
 
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CommentController;
-use App\Http\Controllers\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,13 +15,22 @@ use App\Http\Controllers\CategoryController;
 |
 */
 
-Route::get('/', [CommentController::class, "index"]);
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+Route::controller(CommentController::class)->middleware(['auth'])->group(function(){
+    Route::get('/', 'index')->name('index');
+    Route::post('/comments', 'store')->name('store');
+    Route::get('/comments/create', 'create')->name('create');
+    Route::get('/comments/{comment}', 'show')->name('show');
+    Route::put('/comments/{comment}', 'update')->name('update');
+    Route::delete('/comments/{comment}', 'delete')->name('delete');
+    Route::get('/comments/{comment}/edit', 'edit')->name('edit');
+});
 
-Route::get("/comments/create", [CommentController::class, "create"]);
-Route::post("/comments", [CommentController::class, "store"]);
-Route::get("/comments/{comment}", [CommentController::class, "show"]);
-Route::get("/comments/{comment}/edit", [CommentController::class, "edit"]);
-Route::put("/comments/{comment}", [CommentController::class, "update"]);
-Route::delete("/comments/{comment}", [CommentController::class, "delete"]);
-
-Route::get("/categories/{category}", [CategoryController::class, "index"]);
+require __DIR__.'/auth.php';
