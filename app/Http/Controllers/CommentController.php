@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Comment;
 use App\Http\Requests\CommentRequest;
 use App\Models\Category;
+use Illuminate\Support\Facades\Auth;
 
 class CommentController extends Controller
 {
@@ -25,7 +26,9 @@ class CommentController extends Controller
     {
         $input = $request["comment"];
         // user_idとgoodを入れてあげる
-        
+        $input["user_id"] = Auth::user()->name;
+        $input["good"] = 0;
+        //dd($input);
         $comment->fill($input)->save();
         return redirect("/comments/" . $comment->id);
     }
