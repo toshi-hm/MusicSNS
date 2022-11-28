@@ -2,16 +2,15 @@
     <x-slot name="header">
         アーティストを選択
     </x-slot>
-    <form action="/comments/create/artists/albums", method="POST">
-        @csrf
-        @foreach($results->artists->items as $artist)
+    @foreach($results->artists->items as $artist)
+        <form action="/comments/create/artists/albums", method="POST">
+            @csrf
             <div class="artist_name">
                 <p>{{ $artist->name }}</p>
-                <br>
             </div>
             <input type="hidden" name="artist_id" value="{{ $artist->id }}">
             <input type="submit" value="選択">
             <br>
-        @endforeach
-    </form>
+        </form>
+    @endforeach
 </x-app-layout>

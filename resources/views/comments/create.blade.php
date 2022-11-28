@@ -14,8 +14,8 @@
         </div>
         <div class="music_name">
             <h2>楽曲</h2>
-            <input type="text" name="comment[music_id]" placeholder="楽曲名" value="{{ old('comment.music_id') }}"/>
-            <p class="music_id_error" style="color:red">{{ $errors->first('comment.music_id') }}</p>
+            <p>{{ $track_name }}</p>
+            <input type="hidden" name="comment[music_id]" placeholder="楽曲名" value="{{ $track_name }}"/>
         </div>
         <div class="comment_title">
             <h2>コメントタイトル</h2>

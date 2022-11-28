@@ -26,7 +26,7 @@ Route::middleware('auth')->group(function () {
 Route::controller(CommentController::class)->middleware(['auth'])->group(function(){
     Route::get('/', 'index')->name('index');
     Route::post('/comments', 'store')->name('store');
-    Route::get('/comments/create', 'create')->name('create');
+    //Route::get('/comments/create', 'create')->name('create');
     // SpotifyAPIを用いて楽曲を決める部分
     Route::get("/comments/create/search_artists", "searchArtist")->name("searchArtist");
     Route::post("comments/create/artists", "getArtists")->name("getArtists");

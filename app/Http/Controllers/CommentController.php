@@ -11,23 +11,27 @@ use App\Http\Requests\AlbumIdRequest;
 use App\Http\Requests\TrackNameRequest;
 use App\Models\Category;
 use Illuminate\Support\Facades\Auth;
+use SpotifyWebAPI;
 
 //SpotifyAPIで必要な部分
-require 'vendor/autoload.php';
-
-$session = new SpotifyWebAPI\Session(
-    "dd03c6a0b9b04cbb8710efe538535e51",
-    "3c12260a232c4415a0650922d4c9276f"
-);
-$api = new SpotifyWebAPI\SpotifyWebAPI();
-$session->requestCredentialsToken();
-$accessToken = $session->getAccessToken();
-$api->setAccessToken($accessToken);
+require '../vendor/autoload.php';
 
 
 class CommentController extends Controller
 {
-    public function index(Comment $comment)//インポートしたPostをインスタンス化して$postとして使用。
+    public function spotify()
+    {
+        $session = new SpotifyWebAPI\Session(
+            "dd03c6a0b9b04cbb8710efe538535e51",
+            "3c12260a232c4415a0650922d4c9276f"
+        );
+        $api = new SpotifyWebAPI\SpotifyWebAPI();
+        $session->requestCredentialsToken();
+        $accessToken = $session->getAccessToken();
+        $api->setAccessToken($accessToken);
+        return $api;
+    }
+    public function index(Comment $comment)//インポートしたCommentをインスタンス化して$commentとして使用。
     {
         return view("comments/index")->with(["comments" => $comment->getPaginateByLimit()]);
     }
@@ -75,33 +79,33 @@ class CommentController extends Controller
         // 検索ボックスに入力された値を取得
         $input_artist_name = $request_artist_name["artist_name"];
         // // apiで該当アーティストを全件取得
-        $results = $api->search($input_artist_name, 'artist');
+        $results = $this->spotify()->search($input_artist_name, 'artist');
         // returnでアーティスト一覧へ遷移
-        return view("musics/selectArtist");
+        return view("musics/selectArtist") -> with(["results" => $results]);
     }
     public function getAlbums(ArtistIdRequest $request_artist_id)
     {
         // アーティストIDを取得
         $artist_id = $request_artist_id["artist_id"];
         // アーティストIDを基にアルバムを全件取得・表示(ペジネーション付ける)
-        $albums = $api->getArtistAlbums($artist_id);
+        $albums = $this->spotify()->getArtistAlbums($artist_id);
         // returnでアルバム一覧へ遷移
-        return view("musics/selectAlbum");
+        return view("musics/selectAlbum") -> with(["albums" => $albums]);
     }
     public function getTracks(AlbumIdRequest $request_album_id)
     {
         // アルバムIDを取得
         $album_id = $request_album_id["album_id"];
         // アルバムIDを基にトラックを全件取得・表示
-        $tracks = $api->getAlbumTracks($album_id);
+        $tracks = $this->spotify()->getAlbumTracks($album_id);
         // returnでトラック一覧へ遷移
-        return view("musics/selectTrack");
+        return view("musics/selectTrack") -> with(["tracks" => $tracks]);
     }
-    public function getTrack(TrackNameRequest $request_track_name)
+    public function getTrack(TrackNameRequest $request_track_name, Category $category)
     {
         // トラック名を取得
         $track_name = $request_track_name["track_name"];
         // returnで"/comments/create"へ遷移
-        return view("comments/create");
+        return view("comments/create")->with(["categories" => $category ->get(), "track_name" => $track_name]);
     }
 }

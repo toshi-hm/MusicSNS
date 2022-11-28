@@ -3,7 +3,7 @@
         コメントするアーティストを検索
     </x-slot>
         <div class="content">
-        <form action="/comments/create/artists/albums" method="POST">
+        <form action="/comments/create/artists" method="POST">
             @csrf
             <div class="artist_name">
                 <input type="text" name="artist_name" placeholder="アーティスト名" value="{{ old('artist_name') }}"/>
