@@ -27,6 +27,13 @@ Route::controller(CommentController::class)->middleware(['auth'])->group(functio
     Route::get('/', 'index')->name('index');
     Route::post('/comments', 'store')->name('store');
     Route::get('/comments/create', 'create')->name('create');
+    // SpotifyAPIを用いて楽曲を決める部分
+    Route::get("/comments/create/search_artists", "searchArtist")->name("searchArtist");
+    Route::post("comments/create/artists", "getArtists")->name("getArtists");
+    Route::post("/comments/create/artists/albums", "getAlbums")->name("getAlbums");
+    Route::post("/comments/create/artists/albums/tracks", "getTracks")->name("getTracks");
+    Route::post("comments/create", "getTrack")->name("getTrack");
+    
     Route::get('/comments/{comment}', 'show')->name('show');
     Route::put('/comments/{comment}', 'update')->name('update');
     Route::delete('/comments/{comment}', 'delete')->name('delete');
