@@ -13,15 +13,17 @@ $api->setAccessToken($accessToken);
 
 
 // アーティストIDを取得する
-$results = $api->search('マカロニえんぴつ', 'artist');
+$results = $api->search('緑黄色社会', 'artist');
+$artists_id = [];
 foreach ($results->artists->items as $artist) {
     //dd($artist);
-    $artist_id = substr($artist->uri,15);
-    // echo $artist_id . PHP_EOL;
+    array_push($artists_id ,substr($artist->uri,15));
+    //echo $artist->name . " : " . $artist_id . PHP_EOL;
 }
+//echo $artists_id . PHP_EOL;
 
 // アーティストIDを参照してアルバムIDを取得する
-$albums = $api->getArtistAlbums($artist_id);
+$albums = $api->getArtistAlbums($artists_id[0]);
 foreach ($albums -> items as $album) {
     // dd($album);
     $album_id = substr($album->uri,14);
