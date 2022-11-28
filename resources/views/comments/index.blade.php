@@ -4,7 +4,7 @@
     </x-slot>
     <p>{{ Auth::user()->name }}</p>
     <br>
-    <p>[<a href="/comments/create">コメント作成</a>]</p>
+    <p>[<a href="/comments/create/search_artists">コメント作成</a>]</p>
     <div class='comments'>
         @foreach($comments as $comment)
             <div class='comment'>
