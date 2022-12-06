@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Auth;
 
 class Comment extends Model
 {
@@ -32,5 +33,24 @@ class Comment extends Model
     public function category()
     {
         return $this -> belongsTo(Category::class);
+    }
+    
+    public function goods()
+    {
+        return $this -> hasMany(Good::class, "comment_id");
+    }
+    public function is_good_by_auth_user()
+    {
+        $id = Auth::id();
+        $gooders = array();
+        foreach($this->goods as $good) {
+            array_push($gooders, $good->user_id);
+        }
+        if (in_array($id, $gooders)) {
+            return true;
+        } else {
+            return false;    
+        }
+        
     }
 }

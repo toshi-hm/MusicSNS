@@ -12,6 +12,7 @@ use App\Http\Requests\TrackNameRequest;
 use App\Models\Category;
 use Illuminate\Support\Facades\Auth;
 use SpotifyWebAPI;
+use App\Models\Good;
 
 //SpotifyAPIで必要な部分
 require '../vendor/autoload.php';
@@ -31,6 +32,7 @@ class CommentController extends Controller
         $api->setAccessToken($accessToken);
         return $api;
     }
+    // 楽曲へのコメント関連
     public function index(Comment $comment)//インポートしたCommentをインスタンス化して$commentとして使用。
     {
         return view("comments/index")->with(["comments" => $comment->getPaginateByLimit()]);
@@ -70,6 +72,26 @@ class CommentController extends Controller
         return redirect("/");
     }
     
+    // いいね機能関連
+    public function good($id)
+    {
+        Good::create([
+            "comment_id" => $id,
+            "user_id" => Auth::id()
+        ]);
+        session() -> flash("success", "You pushed 'Good'.");
+        return redirect()->back();
+    }
+    public function deletegood($id)
+    {
+        $like = Good::where("comment_id", $id) -> where("user_id", Auth::id())->first();
+        $like -> delete();
+        
+        session() -> flash("success", "You deleted 'Good'.");
+        return redirect()->back();
+    }
+    
+    // 楽曲検索関連
     public function searchArtist()
     {
         return view("musics/searchArtist");
