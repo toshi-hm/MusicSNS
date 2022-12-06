@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\LikeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,5 +40,12 @@ Route::controller(CommentController::class)->middleware(['auth'])->group(functio
     Route::delete('/comments/{comment}', 'delete')->name('delete');
     Route::get('/comments/{comment}/edit', 'edit')->name('edit');
 });
+
+// Route::controller(LikeController::class)->middleware(["auth"])->group(function(){
+//   Route::post("/comments/{comment}/like", "like")->name("like");
+//   Route::post("/comments/{comment}/deletelike", "deletelike")->name("deletelike");
+// });
+Route::get("/comments/{comment}/good", [CommentController::class, "good"])->name("comment.good");
+Route::get("/comments/{comment}/deletegood",[CommentController::class, "deletegood"])->name("comment.deletegood");
 
 require __DIR__.'/auth.php';

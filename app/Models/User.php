@@ -41,4 +41,36 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    
+    // いいね機能
+    // コメントに対するリレーション
+    public function comments()
+    {
+        // ユーザーは多数のコメントにいいねできる。
+        return $this->belongsToMany(Comment::class);
+    }
+    // public function isLike($comment_id)
+    // {
+    //     return $this->comments()->where("comment_id", $comment_id)->exists();
+    // }
+    // // isLikeを使用して、すでにいいねをしたか確認した後、いいねする(重複回避)
+    // public function like($comment_id)
+    // {
+    //     if($this->isLike($comment_id)) {
+    //         // もしすでにいいねが押されていたら何もしない
+    //     } else {
+    //         // いいねが押されていなかったらいいねする
+    //         $this->comments()->attach($comment_id);
+    //     }
+    // }
+    // // isLikeを使用して、すでにいいねをしたか確認した後、いいねを取り消す
+    // public function deleteLike($comment_id)
+    // {
+    //     if($this->isLike($comment_id)) {
+    //         // もしすでにいいねしていたら取り消す
+    //         $this->comments()->detach($comment_id);
+    //     } else {
+    //         //何もしない
+    //     }
+    // }
 }
