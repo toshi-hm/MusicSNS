@@ -2,6 +2,9 @@
     <x-slot name="header">
         アーティストを選択
     </x-slot>
+    <p class="massage">
+        <!-- もし1アーティストも見つからなかった場合にエラーを出す -->
+    </p>
     @foreach($results->artists->items as $artist)
         <form action="/comments/create/artists/albums", method="POST">
             @csrf
@@ -13,4 +16,7 @@
             <br>
         </form>
     @endforeach
+    <div class="footer">
+        <p>[<a href="/">TOPに戻る</a>]</p>
+    </div>
 </x-app-layout>
