@@ -13,4 +13,7 @@
             </form>
         @endforeach
     </div>
+    <div class="footer">
+        <p>[<a href="/">TOPに戻る</a>]</p>
+    </div>
 </x-app-layout>
