@@ -13,7 +13,30 @@
             <p class="updated_time">最終更新時間：{{ $comment->updated_at }}</p>
             <div class="edit"><a href="/comments/{{ $comment->id }}/edit">編集</a></div>
         </div>
-    </div>
+        <div class="replies">
+            <h3>リプライ</h3>
+            <form action="/comments/{{ $comment->id }}/" method="POST">
+                @csrf
+                <input name="reply[comment_id]" type="hidden" value="{{ $comment->id }}">
+                <input name="reply[user_id]" type="hideen" value="{{ Auth::user()->name }}">
+                <div class="reply_body">
+                    <textarea name="reply[reply_body]" >{{ old("body") }}</textarea>
+                    <p class="reply_error" style="color:red">{{ $errors->first('body') }}</p>
+                </div>
+                <input type="submit" value="返信">
+            </form>
+            <div class="replies_list">
+                @foreach($replies as $reply)
+                    @if({{$reply->comment_id}} === {{{ $comment->id }})
+                        <p>
+                            [{{ $reply->user_id }}]   -   ({{ $reply->created_at }})<br>
+                            {{ $reply->reply_body }}  
+                            <br>
+                        </p>
+                    @endif
+                @endforeach
+            </div>
+        </div>
     <div class="footer">
         <a href="/">戻る</a>
     </div>
