@@ -27,7 +27,7 @@
             </form>
             <div class="replies_list">
                 @foreach($replies as $reply)
-                    @if({{$reply->comment_id}} === {{{ $comment->id }})
+                    @if($reply->comment_id ===  $comment->id)
                         <p>
                             [{{ $reply->user_id }}]   -   ({{ $reply->created_at }})<br>
                             {{ $reply->reply_body }}  
