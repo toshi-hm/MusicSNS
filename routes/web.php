@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\LikeController;
+use App\Http\Controllers\ReplyController;
 
 /*
 |--------------------------------------------------------------------------
@@ -48,4 +49,6 @@ Route::controller(CommentController::class)->middleware(['auth'])->group(functio
 Route::get("/comments/{comment}/good", [CommentController::class, "good"])->name("comment.good");
 Route::get("/comments/{comment}/deletegood",[CommentController::class, "deletegood"])->name("comment.deletegood");
 
+Route::post("/comments/{comment}", [ReplyController::class, "store"])->name("reply.store");
+    
 require __DIR__.'/auth.php';

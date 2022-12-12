@@ -49,28 +49,21 @@ class User extends Authenticatable
         // ユーザーは多数のコメントにいいねできる。
         return $this->belongsToMany(Comment::class);
     }
-    // public function isLike($comment_id)
-    // {
-    //     return $this->comments()->where("comment_id", $comment_id)->exists();
-    // }
-    // // isLikeを使用して、すでにいいねをしたか確認した後、いいねする(重複回避)
-    // public function like($comment_id)
-    // {
-    //     if($this->isLike($comment_id)) {
-    //         // もしすでにいいねが押されていたら何もしない
-    //     } else {
-    //         // いいねが押されていなかったらいいねする
-    //         $this->comments()->attach($comment_id);
-    //     }
-    // }
-    // // isLikeを使用して、すでにいいねをしたか確認した後、いいねを取り消す
-    // public function deleteLike($comment_id)
-    // {
-    //     if($this->isLike($comment_id)) {
-    //         // もしすでにいいねしていたら取り消す
-    //         $this->comments()->detach($comment_id);
-    //     } else {
-    //         //何もしない
-    //     }
-    // }
+    
+    // リプライ機能
+    // 投稿者は複数のコメントをもつ
+    public function comments2()
+    {
+        return $this -> hasMany(Comment::class);
+    }
+    //  投稿者は複数のリプライをもつ
+    public function replies()
+    {
+        return $this -> hasMany(Reply::class);
+    }
+    // 投稿者は複数の第二リプライをもつ
+    public function second_replies()
+    {
+        return $this -> hasMany(Secondreply::class);
+    }
 }

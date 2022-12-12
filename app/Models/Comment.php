@@ -51,6 +51,17 @@ class Comment extends Model
         } else {
             return false;    
         }
-        
     }
+    // リプライ機能
+    // コメントは複数のリプライ(返信)をもち、リプライは１つのコメントに従属
+    public function replies()
+    {
+        return $this -> hasMany(Reply::class);
+    }
+    // コメントは1人の投稿者に従属
+    public function user()
+    {
+        return $this -> belongsTo(User::class);
+    }
+    
 }

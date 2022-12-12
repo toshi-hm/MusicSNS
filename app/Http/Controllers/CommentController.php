@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Comment;
+use App\Models\Reply;
 use App\Http\Requests\CommentRequest;
 use App\Http\Requests\ArtistNameRequest;
 use App\Http\Requests\ArtistIdRequest;
@@ -37,9 +38,9 @@ class CommentController extends Controller
     {
         return view("comments/index")->with(["comments" => $comment->getPaginateByLimit()]);
     }
-    public function show(Comment $comment)
-    {
-        return view("comments/show")->with(["comment" => $comment]);
+    public function show(Comment $comment, Reply $reply)
+    {   
+        return view("comments/show")->with(["comment" => $comment, "replies" => $reply->get()]);
     }
     public function create(Category $category)
     {
@@ -130,4 +131,12 @@ class CommentController extends Controller
         // returnで"/comments/create"へ遷移
         return view("comments/create")->with(["categories" => $category ->get(), "track_name" => $track_name]);
     }
+    
+    // // リプライ機能関連
+    // public function getreplies($id)
+    // {
+    //     $replies = Reply::with(["user", "second_replies", "secondreplies.user"]) -> where("replies.comment_id", $id) -> get();
+        
+    //     return view("/comments");
+    // }
 }
