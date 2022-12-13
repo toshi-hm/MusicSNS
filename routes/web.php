@@ -42,13 +42,12 @@ Route::controller(CommentController::class)->middleware(['auth'])->group(functio
     Route::get('/comments/{comment}/edit', 'edit')->name('edit');
 });
 
-// Route::controller(LikeController::class)->middleware(["auth"])->group(function(){
-//   Route::post("/comments/{comment}/like", "like")->name("like");
-//   Route::post("/comments/{comment}/deletelike", "deletelike")->name("deletelike");
-// });
+// いいね機能関連
 Route::get("/comments/{comment}/good", [CommentController::class, "good"])->name("comment.good");
 Route::get("/comments/{comment}/deletegood",[CommentController::class, "deletegood"])->name("comment.deletegood");
-
+Route::get("/comments/{comment}/goodpeople", [CommentController::class, "goodpeople"])->name("comment.goodpeople");
+// リプライ関連
 Route::post("/comments/{comment}", [ReplyController::class, "store"])->name("reply.store");
+Route::get("/comments/{comment}/{reply}", [ReplyController::class, "show"])->name("reply.show");
     
 require __DIR__.'/auth.php';

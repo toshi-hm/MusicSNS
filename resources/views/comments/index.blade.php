@@ -2,7 +2,7 @@
     <x-slot name="header">
         MusicSNS
     </x-slot>
-    <p>{{ Auth::user()->name }}</p>
+    <p>ようこそ、{{ Auth::user()->name }}さん</p>
     <br>
     <p>[<a href="/comments/create/search_artists">コメント作成</a>]</p>
     <div class='comments'>
@@ -14,7 +14,6 @@
                 </h3>
                 <p class="user_name">{{ $comment->user_id }}  -  {{ $comment->created_at }}</p>
                 <p class='body'>{{ $comment->body }}</p>
-                <p class="time">{{ $comment->good }}</p>
                 <!--<form action="/comments/{{ $comment->id }}/like" id="form_like_{{ $comment->id }}" method="post">-->
                 <!--    @csrf-->
                 <!--    <button type="button" onclick="like({{ $comment->id }})">いいね！</button>-->
