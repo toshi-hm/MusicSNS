@@ -24,6 +24,8 @@
         </form>
         <div class="footer">
             <a href="/comments/{{ $comment->id }}">戻る</a>
+            <br>
+            <a href="/">トップに戻る</a>
         </div>
     </div>    
 </x-app-layout>

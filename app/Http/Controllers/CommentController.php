@@ -91,6 +91,11 @@ class CommentController extends Controller
         session() -> flash("success", "You deleted 'Good'.");
         return redirect()->back();
     }
+    public function goodpeople($id)
+    {
+        $like = \DB::table('goods')->where("comment_id", $id)->get(); // 中間テーブルからユーザーのidを取得
+        return view("comments/goodpeople")->with(["goods" => $like]);
+    }
     
     // 楽曲検索関連
     public function searchArtist()

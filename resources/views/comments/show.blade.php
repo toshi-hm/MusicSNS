@@ -8,7 +8,19 @@
             <p class="user_name">{{ $comment->user_id }}</p>
             <h3>本文</h3>
             <p class='body'>{{ $comment->body }}</p>
-            <p class="good">{{ $comment->good }}</p> 
+            <p class="good">
+                <div class="good">
+                    @if($comment->is_good_by_auth_user())
+                        <p>
+                            <a href="/comments/{{ $comment->id }}/deletegood" class="btn btn-success btn-sm">[Good取消]</a> : [<a href="/comments/{{ $comment->id}}/goodpeople"><span class="badge">{{ $comment->goods->count() }}</span></a>]
+                        </p>
+                    @else
+                        <p>
+                            <a href="/comments/{{ $comment->id }}/good" class="btn btn-success btn-sm">[Good]</a> :[<a href="/comments/{{ $comment->id }}/goodpeople"><span class="badge">{{ $comment->goods->count() }}</span></a>]
+                        </p>
+                    @endif
+                </div>
+            </p> 
             <p class="created_time">投稿時間：{{ $comment->created_at }}</p>
             <p class="updated_time">最終更新時間：{{ $comment->updated_at }}</p>
             <div class="edit"><a href="/comments/{{ $comment->id }}/edit">編集</a></div>
@@ -38,6 +50,6 @@
             </div>
         </div>
     <div class="footer">
-        <a href="/">戻る</a>
+        <a href="/">トップに戻る</a>
     </div>
 </x-app-layout>
