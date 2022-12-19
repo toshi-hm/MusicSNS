@@ -22,6 +22,9 @@
                 <!--    <p>{{ $artist->name }}</p>-->
                 <!--</div>-->
                 <input type="hidden" name="artist_id" value="{{ $artist->id }}">
+                @foreach($artist->genres as $genre)
+                    <input type="hidden" name="artist_genres" value="{{ $genre }}">
+                @endforeach
                 <input type="submit" value="{{ $artist->name }}" class="font-bold ">
                 <br>
             </form>

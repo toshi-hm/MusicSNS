@@ -15,6 +15,7 @@ class AlbumIdRequest extends FormRequest
     {
         return [
             "album_id" => "required|string|max:100",
+            "artist_genre" => "required|string|max:20",
         ];
     }
 }

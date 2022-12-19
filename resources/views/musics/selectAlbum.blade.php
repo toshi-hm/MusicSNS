@@ -13,6 +13,7 @@
             <form action="/comments/create/artists/albums/tracks" method="POST" class="border-2">
                 @csrf
                 <input type="hidden" name="album_id" value="{{ $album->id }}">
+                <input type="hidden" name="artist_genre" value="{{$genre}}">
                 <input type="submit" value="{{ $album->name }}" class="font-bold">
                 <br>
             </form>

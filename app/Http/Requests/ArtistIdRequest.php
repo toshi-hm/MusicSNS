@@ -15,6 +15,7 @@ class ArtistIdRequest extends FormRequest
     {
         return [
             "artist_id" => "required|string|max:100",
+            "artist_genres" =>"required|string|max:20",
         ];
     }
 }

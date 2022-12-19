@@ -6,8 +6,9 @@
         </div>
     </x-slot>
     <div class="w-screen flex justify-center space-x-4">
+        <!-- Left -->
         <div class="text-center bg-green-300">
-            <div class="w-fit text-center font-bold">
+            <div class="w-96 text-center font-bold">
                 <p class="text-xl">通知・メッセージ</p>
             </div>
             <div class="border-2 bg-black-500">
@@ -19,7 +20,8 @@
                 </ul>
             </div>
         </div>
-        <div class="w-fit text-center bg-black-500 ">
+        <!-- Center -->
+        <div class="w-96 text-center bg-black-500 ">
             <!--<div class="flex container mx-auto text-center">-->
             <!--    <p>ようこそ、{{ Auth::user()->name }}さん</p>-->
                 <!--<p class="bg-green-500">[<a href="/comments/create/search_artists">コメント作成</a>]</p>-->
@@ -34,7 +36,7 @@
                         </div>
                         <div class="w-auto flex justify-center items-center">
                             <h2 class='music_name text-green-800'>{{ $comment->music_id }}</h2>
-                            <a href="/categories/{{ $comment->category->id }}">( {{ $comment->category->category_name }} )</a>
+                            <a href="/categories/{{ $comment->category_id }}">( {{ $comment->category_id }} )</a>
                         </div>
                         <h3 class="comment_title">
                             <p class="font-bold"><a href="/comments/{{ $comment->id }}">{{ $comment->title }}</a></p>
@@ -63,12 +65,16 @@
                 {{ $comments->links() }}
             </div> 
         </div>
-        <div class="w-fit text-center bg-green-300">
-            <div class="flex container text-center font-bold">
+        <!-- Right -->
+        <div class="w-96 h-40 text-center bg-green-300">
+            <div class="text-center font-bold">
                 <p class="text-xl">検索</p>
             </div>
             <div class="serach">
-                <input type="text" placeholder="投稿を検索">
+                <form action="" class="text-center py-4">
+                    <input type="text" placeholder="投稿・ユーザーを検索">
+                    <input type="submit" value="検索" class="bg-gray-800 hover:bg-gray-700 text-white px-4 py-2 rounded">
+                </form>
             </div>
             
         </div>
