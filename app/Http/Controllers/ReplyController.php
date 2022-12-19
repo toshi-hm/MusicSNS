@@ -12,7 +12,7 @@ class ReplyController extends Controller
     public function store(ReplyRequest $request, Reply $reply)
     {
         $input = $request["reply"];
-        // user_idとgoodを入れてあげる
+        // user_idを入れてあげる
         $input["user_id"] = Auth::user()->name;
         // dd($input);
         $reply->fill($input)->save();
