@@ -22,12 +22,12 @@ class CategorySeeder extends Seeder
            "updated_at" => new DateTime(),
         ]);
         DB::table("categories")->insert([
-            "created_at" => "K-POP",
+            "category_name" => "K-POP",
             "created_at" => new DateTime(),
             "updated_at" => new DateTime(),
         ]);
         DB::table("categories")->insert([
-            "created_at" => "Classic",
+            "category_name" => "Classic",
             "created_at" => new DateTime(),
             "updated_at" => new DateTime(),
         ]);
