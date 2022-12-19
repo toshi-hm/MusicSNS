@@ -15,6 +15,7 @@ class TrackNameRequest extends FormRequest
     {
         return [
             "track_name" => "required|string|max:100",
+            "artist_genre" => "required|string|max:20",
         ];
     }
 }

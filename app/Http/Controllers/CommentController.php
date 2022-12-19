@@ -98,43 +98,49 @@ class CommentController extends Controller
     }
     
     // 楽曲検索関連
-    public function searchArtist()
+    public function searchArtist() // アーティスト検索
     {
         return view("musics/searchArtist");
     }
-    public function getArtists(ArtistNameRequest $request_artist_name)
+    public function getArtists(ArtistNameRequest $request_artist_name) // アーティスト取得
     {
         // 検索ボックスに入力された値を取得
         $input_artist_name = $request_artist_name["artist_name"];
         // // apiで該当アーティストを全件取得
         $results = $this->spotify()->search($input_artist_name, 'artist');
+        // dd($results);
         // returnでアーティスト一覧へ遷移
         return view("musics/selectArtist") -> with(["results" => $results]);
     }
-    public function getAlbums(ArtistIdRequest $request_artist_id)
+    public function getAlbums(ArtistIdRequest $request_artist_id) // アルバム取得
     {
         // アーティストIDを取得
         $artist_id = $request_artist_id["artist_id"];
+        $artist_genre = $request_artist_id["artist_genres"];
         // アーティストIDを基にアルバムを全件取得・表示(ペジネーション付ける)
         $albums = $this->spotify()->getArtistAlbums($artist_id);
+        // dd($albums);
         // returnでアルバム一覧へ遷移
-        return view("musics/selectAlbum") -> with(["albums" => $albums]);
+        return view("musics/selectAlbum") -> with(["albums" => $albums, "genre" => $artist_genre]);
     }
-    public function getTracks(AlbumIdRequest $request_album_id)
+    public function getTracks(AlbumIdRequest $request_album_id) // 楽曲取得
     {
         // アルバムIDを取得
         $album_id = $request_album_id["album_id"];
         // アルバムIDを基にトラックを全件取得・表示
         $tracks = $this->spotify()->getAlbumTracks($album_id);
+        // dd($tracks);
+        $artist_genre = $request_album_id["artist_genre"];
         // returnでトラック一覧へ遷移
-        return view("musics/selectTrack") -> with(["tracks" => $tracks]);
+        return view("musics/selectTrack") -> with(["tracks" => $tracks, "genre" => $artist_genre]);
     }
-    public function getTrack(TrackNameRequest $request_track_name, Category $category)
+    public function getTrack(TrackNameRequest $request_track_name, Category $category) // 楽曲選択
     {
         // トラック名を取得
         $track_name = $request_track_name["track_name"];
+        $artist_genre = $request_track_name["artist_genre"];
         // returnで"/comments/create"へ遷移
-        return view("comments/create")->with(["categories" => $category ->get(), "track_name" => $track_name]);
+        return view("comments/create")->with(["categories" => $category ->get(), "track_name" => $track_name, "genre" => $artist_genre]);
     }
     
     // // リプライ機能関連

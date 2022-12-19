@@ -6,11 +6,13 @@
         @csrf
         <div class="category">
             <h2 class="font-bold text-green-800">Category</h2>
-            <select name="comment[category_id]">
-                @foreach($categories as $category)
-                    <option value="{{ $category->id }}">{{ $category->category_name }}</option>
-                @endforeach
-            </select>
+            <p>{{ $genre }}</p>
+            <input type="hidden" name="comment[category_id]" value="{{ $genre }}">
+            <!--<select name="comment[category_id]">-->
+            <!--    @foreach($categories as $category)-->
+            <!--        <option value="{{ $category->id }}">{{ $category->category_name }}</option>-->
+            <!--    @endforeach-->
+            <!--</select>-->
         </div>
         <div class="music_name">
             <h2 class="font-bold text-green-800">楽曲</h2>
