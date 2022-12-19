@@ -2,29 +2,33 @@
     <x-slot name="header">
         アーティストを選択
     </x-slot>
-    <p class="massage">
-        <!-- もし1アーティストも見つからなかった場合にエラーを出す -->
-        <?php
-        $num = count($results->artists->items);
-        if($num >= 1) {
-            echo "アーティストが" . $num . "件見つかりました。";
-        } else {
-            echo "該当するアーティストが見つかりませんでした。";
-        }
-        ?>
-    </p>
-    @foreach($results->artists->items as $artist)
-        <form action="/comments/create/artists/albums", method="POST">
-            @csrf
-            <div class="artist_name">
-                <p>{{ $artist->name }}</p>
-            </div>
-            <input type="hidden" name="artist_id" value="{{ $artist->id }}">
-            <input type="submit" value="選択">
-            <br>
-        </form>
-    @endforeach
-    <div class="footer">
-        <p>[<a href="/">TOPに戻る</a>]</p>
+    <div class="text-center">
+        <p class="text-green-800 ">
+            <!-- もし1アーティストも見つからなかった場合にエラーを出す -->
+            <?php
+            $num = count($results->artists->items);
+            if($num >= 1) {
+                echo "アーティストが" . $num . "件見つかりました。";
+                echo "アーティストを選択してください。";
+            } else {
+                echo "該当するアーティストが見つかりませんでした。";
+            }
+            ?>
+        </p>
+        @foreach($results->artists->items as $artist)
+            <form action="/comments/create/artists/albums", method="POST" class="border-2">
+                @csrf
+                <!--<div class="font-bold">-->
+                <!--    <p>{{ $artist->name }}</p>-->
+                <!--</div>-->
+                <input type="hidden" name="artist_id" value="{{ $artist->id }}">
+                <input type="submit" value="{{ $artist->name }}" class="font-bold ">
+                <br>
+            </form>
+        @endforeach
     </div>
+    <div class="footer">
+        <a href="/"  class="bg-gray-400 hover:bg-gray-700 rounded px-4 py-0">TOPに戻る</a>
+    </div>
+        
 </x-app-layout>
