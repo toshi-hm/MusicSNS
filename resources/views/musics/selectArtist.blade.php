@@ -16,15 +16,13 @@
             ?>
         </p>
         @foreach($results->artists->items as $artist)
-            <form action="/comments/create/artists/albums", method="POST" class="border-2">
+            <form action="/comments/create/artists/albums" method="POST" class="border-2">
                 @csrf
                 <!--<div class="font-bold">-->
                 <!--    <p>{{ $artist->name }}</p>-->
                 <!--</div>-->
                 <input type="hidden" name="artist_id" value="{{ $artist->id }}">
-                @foreach($artist->genres as $genre)
-                    <input type="hidden" name="artist_genres" value="{{ $genre }}">
-                @endforeach
+                <input type="hidden" name="artist_genres" value="{{ array_shift($artist->genres) }}">
                 <input type="submit" value="{{ $artist->name }}" class="font-bold ">
                 <br>
             </form>
