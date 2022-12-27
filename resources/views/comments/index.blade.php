@@ -1,3 +1,4 @@
+<title>トップ</title>
 <x-app-layout>
     <x-slot name="header">
         <div class="flex justify-center space-x-4">

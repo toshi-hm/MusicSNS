@@ -37,6 +37,7 @@ Route::controller(CommentController::class)->middleware(['auth'])->group(functio
     Route::post("comments/create", "getTrack")->name("getTrack");
     // SpotifyAPIを用いて音楽の詳細情報を取得する部分
     Route::post("/music/{id}", "music_dateil")->name("music_dateil");
+    Route::get("/music/{id}", "music_detail_error")->name("music_detail_error");
     
     Route::get('/comments/{comment}', 'show')->name('show');
     Route::put('/comments/{comment}', 'update')->name('update');

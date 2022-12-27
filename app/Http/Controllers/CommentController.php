@@ -156,8 +156,12 @@ class CommentController extends Controller
         $track_id = $request_track_id["music_id"];
         $music = $this->spotify()->getTrack($track_id);
         $features = $this->spotify()->getAudioFeatures($track_id);
-        // dd($music);
+        dd($music);
         return view("musics/detail")->with(["music" => $music, "features" => $features]);
+    }
+    public function music_detail_error()
+    {
+        return view("musics/detail_error");
     }
     
     // // リプライ機能関連
