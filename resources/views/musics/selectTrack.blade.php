@@ -13,6 +13,7 @@
             <form action="/comments/create" method="POST" class="border-2">
                 @csrf
                 <input type="hidden" name="track_name" value="{{ $track->name }}">
+                <input type="hidden" name="track_id" value="{{ $track->id }}">
                 <input type="hidden" name="artist_genre" value="{{ $genre }}">
                 <input type="submit" value="{{ $track->name }}" class="font-bold">
                 <br>

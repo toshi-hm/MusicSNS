@@ -17,7 +17,8 @@
         <div class="music_name">
             <h2 class="font-bold text-green-800">楽曲</h2>
             <p>{{ $track_name }}</p>
-            <input type="hidden" name="comment[music_id]" placeholder="楽曲名" value="{{ $track_name }}"/>
+            <input type="hidden" name="comment[music_name]" placeholder="楽曲名" value="{{ $track_name }}"/>
+            <input type="hidden" name="comment[music_id]" value="{{ $track_id }}">
         </div>
         <div class="comment_title">
             <h2 class="font-bold text-green-800">コメントタイトル</h2>

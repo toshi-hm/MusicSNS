@@ -15,7 +15,8 @@ return new class extends Migration
     {
         Schema::create('comments', function (Blueprint $table) {
             $table->id();
-            $table->string("music_id", 80);
+            $table->string("music_name", 80);
+            $table->string("music_id", 50);
             $table->string("user_id", 50);
             $table->string("title", 50);
             $table->string("body", 240);

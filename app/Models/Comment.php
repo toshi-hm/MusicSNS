@@ -23,6 +23,7 @@ class Comment extends Model
     }
     protected $fillable = [
     "user_id",
+    "music_name",
     "music_id",
     'title',
     'body',
