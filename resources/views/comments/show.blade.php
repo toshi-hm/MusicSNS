@@ -16,7 +16,11 @@
             <div class="content__cemment">
                 <h2 class='music_name'>
                     <div class="text-green-800 font-bold flex justify-center">Music</div>
-                    <p>{{ $comment->music_id }}</p>
+                    <form action="/music/{{$comment->music_id}}" method="POST">
+                        @csrf
+                        <input type="hidden"  name="music_id" value="{{$comment->music_id}}"> 
+                        <input type="submit" name="music_name" value="{{ $comment->music_name }}">
+                    </form>
                     <p>
                         ジャンル: 
                         <a href="/categories/{{ $comment->category_id }}">{{ $comment->category_id}}</a>
@@ -43,7 +47,22 @@
                 </p> 
                 <p class="created_time">投稿時間：{{ $comment->created_at }}</p>
                 <p class="updated_time">最終更新時間：{{ $comment->updated_at }}</p>
-                <div class="edit"><a href="/comments/{{ $comment->id }}/edit">編集</a></div>
+                <br>
+                @if($comment->user_id === Auth::user()->name)
+                    <div class="buttons">
+                        <div class="edit">
+                            <a href="/comments/{{ $comment->id }}/edit"class="bg-gray-800 hover:bg-gray-700 text-white rounded px-4 py-2" >編集</a>
+                        </div>
+                        <br>
+                        <div class="delete">
+                            <form action="/comments/{{ $comment->id }}" id="form_{{ $comment->id }}" method="post">
+                                @csrf
+                                @method("DELETE")
+                                <button type="button" onclick="deleteComment({{ $comment->id }})" class="bg-gray-800 hover:bg-gray-700 text-white rounded px-4 py-2">削除</button>
+                            </form>
+                        </div>
+                    </div>
+                @endif
             </div>
         </div>
         <div class="replies">
@@ -75,4 +94,13 @@
     <div class="footer">
         <a href="/" class="bg-gray-400 hover:bg-gray-700 rounded px-4 py-0">トップに戻る</a>
     </div>
+    <script>
+        function deleteComment(id) {
+            "use strict"
+            
+            if (confirm("このコメントは完全に削除されますがよろしいですか？")) {
+                document.getElementById(`form_${id}`).submit();
+            }
+        }
+    </script>
 </x-app-layout>

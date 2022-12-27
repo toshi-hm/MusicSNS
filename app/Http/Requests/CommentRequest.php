@@ -14,6 +14,8 @@ class CommentRequest extends FormRequest
     public function rules()
     {
         return [
+            "comment.music_name" => "required|string|max:80",
+            "comment.music_id" => "required|string|max:50",
             "comment.title" => "required|string|max:50",
             "comment.body" => "required|string|max:240",
         ];

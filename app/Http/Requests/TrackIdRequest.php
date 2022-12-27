@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class TrackNameRequest extends FormRequest
+class TrackIdRequest extends FormRequest
 {
     /**
      * Get the validation rules that apply to the request.
@@ -14,9 +14,7 @@ class TrackNameRequest extends FormRequest
     public function rules()
     {
         return [
-            "track_name" => "required|string|max:80",
-            "track_id" => "required|string|max:50",
-            "artist_genre" => "required|string|max:20",
+            "music_id" => "required|string|max:50",
         ];
     }
 }

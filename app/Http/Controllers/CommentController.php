@@ -10,6 +10,7 @@ use App\Http\Requests\ArtistNameRequest;
 use App\Http\Requests\ArtistIdRequest;
 use App\Http\Requests\AlbumIdRequest;
 use App\Http\Requests\TrackNameRequest;
+use App\Http\Requests\TrackIdRequest;
 use App\Models\Category;
 use Illuminate\Support\Facades\Auth;
 use SpotifyWebAPI;
@@ -52,7 +53,7 @@ class CommentController extends Controller
         // user_idとgoodを入れてあげる
         $input["user_id"] = Auth::user()->name;
         $input["good"] = 0;
-        //dd($input);
+        // dd($input);
         $comment->fill($input)->save();
         return redirect("/comments/" . $comment->id);
     }
@@ -144,9 +145,19 @@ class CommentController extends Controller
     {
         // トラック名を取得
         $track_name = $request_track_name["track_name"];
+        $track_id = $request_track_name["track_id"];
         $artist_genre = $request_track_name["artist_genre"];
         // returnで"/comments/create"へ遷移
-        return view("comments/create")->with(["categories" => $category ->get(), "track_name" => $track_name, "genre" => $artist_genre]);
+        return view("comments/create")->with(["categories" => $category ->get(), "track_name" => $track_name, "track_id" => $track_id, "genre" => $artist_genre]);
+    }
+    
+    public function music_dateil(TrackIdRequest $request_track_id) // 楽曲の詳細情報を取得する
+    {
+        $track_id = $request_track_id["music_id"];
+        $music = $this->spotify()->getTrack($track_id);
+        $features = $this->spotify()->getAudioFeatures($track_id);
+        // dd($music);
+        return view("musics/detail")->with(["music" => $music, "features" => $features]);
     }
     
     // // リプライ機能関連
