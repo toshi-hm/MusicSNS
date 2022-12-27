@@ -85,6 +85,7 @@
                 <form action="" class="text-center py-4">
                     <input type="text" placeholder="投稿・ユーザーを検索">
                     <input type="submit" value="検索" class="bg-gray-800 hover:bg-gray-700 text-white px-4 py-2 rounded">
+                    <p>メンテナンス中</p>
                 </form>
             </div>
             
