@@ -40,6 +40,7 @@ foreach ($albums -> items as $album) {
 // アルバムIDを参照してトラックを取得する
 $tracks = $api->getAlbumTracks($album_id);
 foreach ($tracks -> items as $track){
+    dd($track);
     echo $track->name . PHP_EOL;
 }
 

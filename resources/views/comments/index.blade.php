@@ -14,8 +14,10 @@
             <div class="border-2 bg-black-500">
                 <ul>
                     <li>通知</li>
+                    <p class="mentenance">メンテナンス中</p>
                     <br>
                     <li>あなたへのメッセージ</li>
+                    <p class="mentenance">メンテナンス中</p>
                     <br>
                 </ul>
             </div>
@@ -57,6 +59,9 @@
                             @else
                                 <a href="/comments/{{ $comment->id }}/good" class="btn btn-success btn-sm">[Good] :<span class="badge">{{ $comment->goods->count() }}</span></a>
                             @endif
+                        </div>
+                        <div class="button">
+                            <a href="/comments/{{ $comment->id }}" class="font-bold bg-gray-400 px-2 py-2 rounded flex justify-center items-center">[詳細・返信]</a>
                         </div>
                     </div>
                 @endforeach

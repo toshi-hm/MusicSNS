@@ -98,6 +98,12 @@ class CommentController extends Controller
     }
     
     // 楽曲検索関連
+    public function getMusicInfomation() // 楽曲詳細情報取得
+    {
+        $track_id = $request_track["track_id"];
+        $track = $this -> spotify() ->getTrack($track_id);
+        return view("musics/infomation") -> with([]);
+    }
     public function searchArtist() // アーティスト検索
     {
         return view("musics/searchArtist");
