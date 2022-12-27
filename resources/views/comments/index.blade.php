@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <div class="flex justify-center space-x-4">
-            <p class="font-bold">MusicSNS</p>
+            <p class="font-bold">HaMusicSNS</p>
             <p>ようこそ、{{ Auth::user()->name }}さん</p>
         </div>
     </x-slot>
