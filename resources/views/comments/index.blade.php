@@ -82,7 +82,7 @@
             <div class="text-center font-bold">
                 <p class="text-xl">検索</p>
             </div>
-            <div class="serach">
+            <div class="search">
                 <div class="font-bold text-green-800">
                     <a href="/search">[探す]</a>
                 </div>
