@@ -1,3 +1,4 @@
+<title>{{ $comment->title }} - {{ $comment->user_id }} - HaMusicSNS</title>
 <x-app-layout>
     <x-slot name="header">
         <div class="flex justify-center space-x-4 bg-green-300">

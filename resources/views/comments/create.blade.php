@@ -1,3 +1,4 @@
+<title>投稿作成 - HaMusicSNS</title>
 <x-app-layout>
     <x-slot name="header">
         MusicSNS

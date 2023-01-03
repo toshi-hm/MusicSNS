@@ -1,6 +1,7 @@
+<title>楽曲情報 - {{ $music->name }} - HaMusicSNS</title>
 <x-app-layout>
     <x-slot name="header">
-        <p class="fond-bold text-center">{{ $music->name}}</p>
+        <p class="fond-bold text-center">{{ $music->name }}</p>
     </x-slot>
     <div class="text-center">
         <div class="flex justify-center">

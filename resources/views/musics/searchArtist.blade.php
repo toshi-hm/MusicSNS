@@ -1,3 +1,4 @@
+<title>アーティスト検索 - HaMusicSNS</title>
 <x-app-layout>
     <x-slot name="header">
         コメントするアーティストを検索

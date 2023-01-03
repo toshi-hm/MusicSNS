@@ -1,3 +1,4 @@
+<title>アルバム選択 - HaMusicSNS</title>
 <x-app-layout>
     <x-slot name="header">
         アルバムを選択

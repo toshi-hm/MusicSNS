@@ -1,3 +1,4 @@
+<title>エラー - HaMusicSNS</title>
 <x-app-layout>
     <x-slot>
         Error

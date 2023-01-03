@@ -1,3 +1,4 @@
+<title>Goodしたユーザー - HaMusicSNS</title>
 <x-app-layout>
     <x-slot name="header">
         <p class="text-center font-bold">Goodしたユーザー</p>

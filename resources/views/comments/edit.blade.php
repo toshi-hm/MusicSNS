@@ -1,3 +1,4 @@
+<title>編集 - {{ $comment->title }}({{ $comment->user_id }}) - HaMusicSNS</title>
 <x-app-layout>
     <x-slot name="header">
         編集画面
