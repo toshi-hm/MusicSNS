@@ -5,12 +5,14 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Comment;
 use App\Models\Reply;
+use App\Models\User;
 use App\Http\Requests\CommentRequest;
 use App\Http\Requests\ArtistNameRequest;
 use App\Http\Requests\ArtistIdRequest;
 use App\Http\Requests\AlbumIdRequest;
 use App\Http\Requests\TrackNameRequest;
 use App\Http\Requests\TrackIdRequest;
+use App\Http\Requests\SearchRequest;
 use App\Models\Category;
 use Illuminate\Support\Facades\Auth;
 use SpotifyWebAPI;
@@ -72,6 +74,24 @@ class CommentController extends Controller
     {
         $comment -> delete();
         return redirect("/");
+    }
+    
+    // 検索関連
+    public function searchtop()
+    {
+        return view("comments/search");
+    }
+    public function search_comments(SearchRequest $request)
+    {
+        $music_word = $request["search.music_name"];
+        $genre_word = $request["search.genre"];
+        $user_word = $request["search.user_name"];
+        
+        $comments_1 = Comment::where("music_name", $music_word)->get();
+        $comments_2 = Comment::where("category_id", $genre_word)->get();
+        $users = User::where("name", $user_word)->get();
+        
+        return view("comments/search_result")->with(["comments1" => $comments_1, "comments2" => $comments_2, "users" => $users]);
     }
     
     // いいね機能関連
