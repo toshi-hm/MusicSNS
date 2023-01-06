@@ -3,7 +3,7 @@
     <x-auth-card>
         <x-slot name="logo">
             <a href="/">
-                <img src="{{asset('storage/HaMusicSNS_icon.png')}}" class="w-20 h-20 fill-current text-gray-500" />
+                <img src="../../storage/HaMusicSNS_icon.png" class="w-20 h-20 fill-current text-gray-500" />
             </a>
         </x-slot>
 
