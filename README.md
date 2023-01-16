@@ -1,66 +1,126 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+<p align="center"><a href=https://hamusicsns.herokuapp.com/login target="_blank"><img src="storage/app/public/HaMusicSNS.png" width="400" alt="HaMusicSNS Logo"></a></p>
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## HaMusicSNSについて
 
-## About Laravel
+自分のお気に入りの音楽を紐づけて投稿を作成する音楽共有SNS
+最近知った曲・昔から大好きな曲など、ほかの人に聞いてほしい曲をコメントをつけて投稿しよう！
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## 使い方
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### ユーザー登録
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+登録は[こちら](https://hamusicsns.herokuapp.com/register)から
 
-## Learning Laravel
+#### 必要情報
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+- Name(ユーザー名)
+- Email(メールアドレス)
+- Password(任意のパスワード 8文字以上)
+- Confirm Password(パスワードの確認)
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+### ログイン
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+ログインは[こちら](https://hamusicsns.herokuapp.com/login)から
 
-## Laravel Sponsors
+- Email
+- Password
+を入力してログインする
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+### トップページ
 
-### Premium Partners
+[機能]
+- 通知・メッセージ(メンテナンス中)
+自分への通知やほかの人からのメッセージ(今後実装予定)を受け取る
+- タイムライン
+ユーザーが作成した投稿が表示される
+- 検索
+投稿を検索する
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
 
-## Contributing
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### 投稿を作成する
 
-## Code of Conduct
+トップページの上部バナー "Make a New Comment" をクリック
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+#### アーティストの検索と選択
 
-## Security Vulnerabilities
+アーティスト検索画面の検索ボックスにアーティスト名を入力して検索をクリック
+入力された内容に近いアーティストが一覧で表示されるため、該当するアーティストを選択する
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+#### アルバムの選択
 
-## License
+選択されたアーティストが配信しているアルバムが一覧で表示される
+※サブスクリプション解禁されていないアーティストのアルバムは表示されない
+該当するアルバムを選択する
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+#### 楽曲の選択
+
+選択したアルバムに含まれる楽曲が一覧で表示される
+自分が投稿したい楽曲を選択する
+
+#### コメントの入力
+
+- コメントタイトル
+- 本文
+を入力して "投稿" をクリック　→　完了！
+
+### 投稿を確認する
+
+#### 投稿を詳細表示する
+
+トップページのタイムラインで、詳細表示させたい投稿の [詳細・返信] ボタンをクリック
+
+- 投稿したユーザーと投稿のタイトル
+- 楽曲名とジャンル
+- 投稿の本文
+- Good数
+- 投稿した時間
+- 最後に編集した時間
+
+が表示される
+
+#### 投稿に返信する
+
+詳細表示画面の下のテキストボックスに返信内容を入力し、返信ボタンをクリックするとその投稿に返信を送信できる
+
+#### 投稿された楽曲情報を確認する
+
+トップページのタイムラインまたは投稿の詳細表示画面で、楽曲名をクリックする
+- アルバムジャケット画像
+- アーティスト名
+- 収録アルバム名・トラック番号
+- アルバムリリース日
+が表示される
+
+### 投稿を削除する
+
+投稿者本人に限り、投稿の削除ができる
+投稿の詳細表示画面の中央の削除ボタンをクリックすると警告画面がでるため、"OK"をクリックすると投稿が削除される
+
+### 投稿にGoodをつける
+
+トップページまたは投稿の詳細表示画面で[Good]を押すとその投稿にGoodできる
+投稿の詳細表示画面で[Good]の隣の数字をクリックするとGoodしたユーザーが一覧表示される
+
+
+### 投稿を検索する
+
+トップページ右の検索から [探す] をクリック
+- 楽曲名
+- ジャンル
+- ユーザー
+の3種類の検索ができる
+
+***
+
+## 作成詳細
+
+[使用言語・フレームワーク]
+- [PHP](https://www.php.net/) 8.0.25
+- [Laravel](https://laravel.com/) 9.39.0
+
+[外部API]
+- [Spotify Web API](https://developer.spotify.com/documentation/web-api/)
+
+[デプロイ]
+- [heroku](https://jp.heroku.com/)
